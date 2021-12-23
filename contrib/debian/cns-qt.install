@@ -1,0 +1,6 @@
+usr/local/bin/cns-qt usr/bin
+share/pixmaps/cns32.xpm usr/share/pixmaps
+share/pixmaps/cns16.xpm usr/share/pixmaps
+share/pixmaps/cns128.png usr/share/pixmaps
+debian/cns-qt.desktop usr/share/applications
+debian/cns-qt.protocol usr/share/kde4/services/

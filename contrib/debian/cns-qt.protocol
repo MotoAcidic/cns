@@ -1,0 +1,11 @@
+[Protocol]
+exec=cns-qt '%u'
+protocol=cns
+input=none
+output=none
+helper=true
+listing=
+reading=false
+writing=false
+makedir=false
+deleting=false
