@@ -466,7 +466,7 @@ public:
         nDefaultPort = 10226;
         nPruneAfterHeight = 100000;
         //FindMainNetGenesisBlock(1640313584, 0x20001fff, "main");
-        genesis = CreateGenesisBlock(1640313584, 1253, 0x20001fff, 1, 1 * COIN);
+        genesis = CreateGenesisBlock(1640313584, 1253, 0x20001fff, 4, 7000 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0x71b99e0fc16efc5ea30aff0715e0014b3189e190217f43cff49f36897c7aad11"));
         assert(genesis.hashMerkleRoot == uint256S("0x1e1a5866be75552f6a1b2ed4c5dab9133df397034f3c2e231d24caff6cdc11a7"));
@@ -607,21 +607,17 @@ public:
         nDefaultPort = 10227;
         nPruneAfterHeight = 1000;
         //FindMainNetGenesisBlock(1618814931,  0x20001fff, "test");
-        genesis = CreateGenesisBlock(1618814931, 1398, 0x20001fff, 4, 5000 * COIN);
+        genesis = CreateGenesisBlock(1640313584, 1253, 0x20001fff, 4, 7000 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x3c8321a56c52304c462f03f92f9e36677b57126501d77482feb763dcb59da91b"));
-        assert(genesis.hashMerkleRoot == uint256S("0x87a48bc22468acdd72ee540aab7c086a5bbcddc12b51c6ac925717a74c269453"));
+        assert(consensus.hashGenesisBlock == uint256S("0x71b99e0fc16efc5ea30aff0715e0014b3189e190217f43cff49f36897c7aad11"));
+        assert(genesis.hashMerkleRoot == uint256S("0x1e1a5866be75552f6a1b2ed4c5dab9133df397034f3c2e231d24caff6cdc11a7"));
 
         vFixedSeeds.clear();
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
 
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.emplace_back("47.151.7.226", true);
-        vSeeds.emplace_back("62.171.153.224", true);
-        vSeeds.emplace_back("98.38.235.195", true);
-        vSeeds.emplace_back("ger1.cns.com", true);
-        vSeeds.emplace_back("ny1.cns.com", true);
+        vSeeds.emplace_back("139.177.202.185", true);
 
         // Testnet CNS addresses start with 'r'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,123);
