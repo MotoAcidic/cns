@@ -411,7 +411,7 @@ public:
     CMainParams() {
         strNetworkID = "main";
         consensus.nSubsidyHalvingInterval = 210240; // Note: actual number of blocks per calendar year with DGW v3 is ~200700 (for example 449750 - 249050)
-        consensus.nSmartnodePaymentsStartBlock = 5761; // 
+        consensus.nSmartnodePaymentsStartBlock = 5761; //
         consensus.nSmartnodePaymentsIncreaseBlock = 158000; // actual historical value
         consensus.nSmartnodePaymentsIncreasePeriod = 576*30; // 17280 - actual historical value
         consensus.nInstantSendConfirmationsRequired = 6;
@@ -465,21 +465,20 @@ public:
         pchMessageStart[3] = 0x2e;//.
         nDefaultPort = 10226;
         nPruneAfterHeight = 100000;
-        FindMainNetGenesisBlock(1640313584, 0x20001fff, "main");
-        //genesis = CreateGenesisBlock(1640313584, 1130, 0x20001fff, 1, 1 * COIN);
+        //FindMainNetGenesisBlock(1640313584, 0x20001fff, "main");
+        genesis = CreateGenesisBlock(1640313584, 1253, 0x20001fff, 1, 1 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x001"));
-        assert(genesis.hashMerkleRoot == uint256S("0x001"));
+        assert(consensus.hashGenesisBlock == uint256S("0x71b99e0fc16efc5ea30aff0715e0014b3189e190217f43cff49f36897c7aad11"));
+        assert(genesis.hashMerkleRoot == uint256S("0x1e1a5866be75552f6a1b2ed4c5dab9133df397034f3c2e231d24caff6cdc11a7"));
 
-        vSeeds.emplace_back("seed00.cns.com", true);
-        vSeeds.emplace_back("seed01.cns.com", true);
-        vSeeds.emplace_back("seed02.cns.com", true);
-        vSeeds.emplace_back("seed03.cns.com", true);
-        vSeeds.emplace_back("seed04.cns.com", true);
-        vSeeds.emplace_back("seed05.cns.com", true);
-        vSeeds.emplace_back("seed06.cns.com", true);
-        vSeeds.emplace_back("ger1.cns.com", true);
-        vSeeds.emplace_back("ny1.cns.com", true);
+        vSeeds.emplace_back("seed01.cryptoneversleeps.org", true);
+        vSeeds.emplace_back("seed01.cryptoneversleeps.org", true);
+        vSeeds.emplace_back("seed02.cryptoneversleeps.org", true);
+        vSeeds.emplace_back("seed03.cryptoneversleeps.org", true);
+        vSeeds.emplace_back("seed04.cryptoneversleeps.org", true);
+        vSeeds.emplace_back("seed05.cryptoneversleeps.org", true);
+        vSeeds.emplace_back("seed06.cryptoneversleeps.org", true);
+        vSeeds.emplace_back("seed07.cryptoneversleeps.org", true);
 
 
         // CNS addresses start with 'r'
