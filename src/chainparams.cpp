@@ -465,11 +465,11 @@ public:
         pchMessageStart[3] = 0x2e;//.
         nDefaultPort = 10226;
         nPruneAfterHeight = 100000;
-        FindMainNetGenesisBlock(1640313584, 0x20001fff, "main");
-        genesis = CreateGenesisBlock(1640313584, 1253, 0x20001fff, 1, 1 * COIN);
+        FindMainNetGenesisBlock(1640443620, 0x20001fff, "main");
+        genesis = CreateGenesisBlock(1640443620, 1253, 0x20001fff, 1, 1 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("71b99e0fc16efc5ea30aff0715e0014b3189e190217f43cff49f36897c7aad11"));
-        assert(genesis.hashMerkleRoot == uint256S("1e1a5866be75552f6a1b2ed4c5dab9133df397034f3c2e231d24caff6cdc11a7"));
+        assert(consensus.hashGenesisBlock == uint256S("0x001"));
+        assert(genesis.hashMerkleRoot == uint256S("0x001"));
 
         vSeeds.emplace_back("seed01.cryptoneversleeps.org", true);
         vSeeds.emplace_back("seed01.cryptoneversleeps.org", true);
