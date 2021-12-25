@@ -466,7 +466,7 @@ public:
         nDefaultPort = 10226;
         nPruneAfterHeight = 100000;
         FindMainNetGenesisBlock(1640313584, 0x20001fff, "main");
-        //genesis = CreateGenesisBlock(1640313584, 1130, 0x20001fff, 1, 1 * COIN);
+        genesis = CreateGenesisBlock(1640313584, 1130, 0x20001fff, 1, 1 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0x001"));
         assert(genesis.hashMerkleRoot == uint256S("0x001"));
@@ -608,7 +608,7 @@ public:
         nDefaultPort = 10227;
         nPruneAfterHeight = 1000;
         FindMainNetGenesisBlock(1640313585, 0x20001fff, "test");
-        //genesis = CreateGenesisBlock(1640313584, 1130, 0x20001fff, 1, 1 * COIN);
+        genesis = CreateGenesisBlock(1640313585, 1130, 0x20001fff, 1, 1 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0x001"));
         assert(genesis.hashMerkleRoot == uint256S("0x001"));
