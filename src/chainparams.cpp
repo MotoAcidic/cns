@@ -411,7 +411,7 @@ public:
     CMainParams() {
         strNetworkID = "main";
         consensus.nSubsidyHalvingInterval = 210240; // Note: actual number of blocks per calendar year with DGW v3 is ~200700 (for example 449750 - 249050)
-        consensus.nSmartnodePaymentsStartBlock = 5761; //
+        consensus.nSmartnodePaymentsStartBlock = 5761; // 
         consensus.nSmartnodePaymentsIncreaseBlock = 158000; // actual historical value
         consensus.nSmartnodePaymentsIncreasePeriod = 576*30; // 17280 - actual historical value
         consensus.nInstantSendConfirmationsRequired = 6;
@@ -465,20 +465,21 @@ public:
         pchMessageStart[3] = 0x2e;//.
         nDefaultPort = 10226;
         nPruneAfterHeight = 100000;
-        FindMainNetGenesisBlock(1640443620, 0, "main");
-        genesis = CreateGenesisBlock(1640437200, 0, 0x20001fff, 1, 1 * COIN);
+        FindMainNetGenesisBlock(1640313584, 0x20001fff, "main");
+        //genesis = CreateGenesisBlock(1640313584, 1130, 0x20001fff, 1, 1 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x0"));
-        assert(genesis.hashMerkleRoot == uint256S("0x0"));
+        assert(consensus.hashGenesisBlock == uint256S("0x001"));
+        assert(genesis.hashMerkleRoot == uint256S("0x001"));
 
-        vSeeds.emplace_back("seed01.cryptoneversleeps.org", true);
-        vSeeds.emplace_back("seed01.cryptoneversleeps.org", true);
-        vSeeds.emplace_back("seed02.cryptoneversleeps.org", true);
-        vSeeds.emplace_back("seed03.cryptoneversleeps.org", true);
-        vSeeds.emplace_back("seed04.cryptoneversleeps.org", true);
-        vSeeds.emplace_back("seed05.cryptoneversleeps.org", true);
-        vSeeds.emplace_back("seed06.cryptoneversleeps.org", true);
-        vSeeds.emplace_back("seed07.cryptoneversleeps.org", true);
+        vSeeds.emplace_back("seed00.cns.com", true);
+        vSeeds.emplace_back("seed01.cns.com", true);
+        vSeeds.emplace_back("seed02.cns.com", true);
+        vSeeds.emplace_back("seed03.cns.com", true);
+        vSeeds.emplace_back("seed04.cns.com", true);
+        vSeeds.emplace_back("seed05.cns.com", true);
+        vSeeds.emplace_back("seed06.cns.com", true);
+        vSeeds.emplace_back("ger1.cns.com", true);
+        vSeeds.emplace_back("ny1.cns.com", true);
 
 
         // CNS addresses start with 'r'
@@ -606,11 +607,11 @@ public:
         pchMessageStart[3] = 0x6d; //m
         nDefaultPort = 10227;
         nPruneAfterHeight = 1000;
-        FindMainNetGenesisBlock(1640437201,  0, "test");
-        genesis = CreateGenesisBlock(1640437201, 0, 0x20001fff, 1, 1 * COIN);
+        //FindMainNetGenesisBlock(1618814931,  0x20001fff, "test");
+        genesis = CreateGenesisBlock(1618814931, 1398, 0x20001fff, 4, 5000 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x0"));
-        assert(genesis.hashMerkleRoot == uint256S("0x0"));
+        assert(consensus.hashGenesisBlock == uint256S("0x3c8321a56c52304c462f03f92f9e36677b57126501d77482feb763dcb59da91b"));
+        assert(genesis.hashMerkleRoot == uint256S("0x87a48bc22468acdd72ee540aab7c086a5bbcddc12b51c6ac925717a74c269453"));
 
         vFixedSeeds.clear();
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
