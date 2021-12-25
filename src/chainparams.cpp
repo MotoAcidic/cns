@@ -466,10 +466,10 @@ public:
         nDefaultPort = 10226;
         nPruneAfterHeight = 100000;
         FindMainNetGenesisBlock(1640443620, 0, "main");
-        genesis = CreateGenesisBlock(1640437200, 0, 0, 0, 1 * COIN);
+        genesis = CreateGenesisBlock(1640437200, 0, 0x20001fff, 1, 1 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S(""));
-        assert(genesis.hashMerkleRoot == uint256S(""));
+        assert(consensus.hashGenesisBlock == uint256S("0x0"));
+        assert(genesis.hashMerkleRoot == uint256S("0x0"));
 
         vSeeds.emplace_back("seed01.cryptoneversleeps.org", true);
         vSeeds.emplace_back("seed01.cryptoneversleeps.org", true);
@@ -607,10 +607,10 @@ public:
         nDefaultPort = 10227;
         nPruneAfterHeight = 1000;
         FindMainNetGenesisBlock(1640437201,  0, "test");
-        genesis = CreateGenesisBlock(1640437201, 0, 0, 0, 1 * COIN);
+        genesis = CreateGenesisBlock(1640437201, 0, 0x20001fff, 1, 1 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S(""));
-        assert(genesis.hashMerkleRoot == uint256S(""));
+        assert(consensus.hashGenesisBlock == uint256S("0x0"));
+        assert(genesis.hashMerkleRoot == uint256S("0x0"));
 
         vFixedSeeds.clear();
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
