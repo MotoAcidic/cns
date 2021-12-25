@@ -465,11 +465,11 @@ public:
         pchMessageStart[3] = 0x2e;//.
         nDefaultPort = 10226;
         nPruneAfterHeight = 100000;
-        //FindMainNetGenesisBlock(1640443620, 0x20001fff, "main");
-        genesis = CreateGenesisBlock(1640443620, 3176, 0x20001fff, 4, 1 * COIN);
+        FindMainNetGenesisBlock(1640443620, 0, "main");
+        genesis = CreateGenesisBlock(1640437200, 0, 0, 0, 1 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x565d7ef85b2070c5cf1dfae2e536c8ea5b9d744b31e7008b894afa7cccfe1542"));
-        assert(genesis.hashMerkleRoot == uint256S("0x1e1a5866be75552f6a1b2ed4c5dab9133df397034f3c2e231d24caff6cdc11a7"));
+        assert(consensus.hashGenesisBlock == uint256S(""));
+        assert(genesis.hashMerkleRoot == uint256S(""));
 
         vSeeds.emplace_back("seed01.cryptoneversleeps.org", true);
         vSeeds.emplace_back("seed01.cryptoneversleeps.org", true);
@@ -606,11 +606,11 @@ public:
         pchMessageStart[3] = 0x6d; //m
         nDefaultPort = 10227;
         nPruneAfterHeight = 1000;
-        //FindMainNetGenesisBlock(1618814931,  0x20001fff, "test");
-        genesis = CreateGenesisBlock(1618814931, 1398, 0x20001fff, 4, 5000 * COIN);
+        FindMainNetGenesisBlock(1640437201,  0, "test");
+        genesis = CreateGenesisBlock(1640437201, 0, 0, 0, 1 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x3c8321a56c52304c462f03f92f9e36677b57126501d77482feb763dcb59da91b"));
-        assert(genesis.hashMerkleRoot == uint256S("0x87a48bc22468acdd72ee540aab7c086a5bbcddc12b51c6ac925717a74c269453"));
+        assert(consensus.hashGenesisBlock == uint256S(""));
+        assert(genesis.hashMerkleRoot == uint256S(""));
 
         vFixedSeeds.clear();
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
