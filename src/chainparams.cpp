@@ -468,7 +468,7 @@ public:
         //FindMainNetGenesisBlock(1640443620, 0x20001fff, "main");
         genesis = CreateGenesisBlock(1640443620, 3176, 0x20001fff, 1, 1 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x565d7ef85b2070c5cf1dfae2e536c8ea5b9d744b31e7008b894afa7cccfe1542"));
+        assert(consensus.hashGenesisBlock == uint256S("0x001f37d33feb969d141b6142d10001b5b82406458810caf3c787a600fae4a585"));
         assert(genesis.hashMerkleRoot == uint256S("0x1e1a5866be75552f6a1b2ed4c5dab9133df397034f3c2e231d24caff6cdc11a7"));
 
         vSeeds.emplace_back("seed01.cryptoneversleeps.org", true);
