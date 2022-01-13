@@ -469,8 +469,8 @@ public:
         //FindMainNetGenesisBlock(1640529614, 0x20001fff, "main");
         genesis = CreateGenesisBlock(1640529614, 3905, 0x20001fff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0xb217c0b25867cc041ba455ccb58d3eec94fafc27131a4f50a721d68b32dd12f3"));
-        assert(genesis.hashMerkleRoot == uint256S("0x7887fde97c010c16ca9947d9d7c7cf291fc88e33b62b0347da50128e642930d5"));
+        assert(consensus.hashGenesisBlock == uint256S("0x00153528fa2c14fae39379d9d522726b29cb5c31608c170d13344a9986b9d51f"));
+        assert(genesis.hashMerkleRoot == uint256S("07887fde97c010c16ca9947d9d7c7cf291fc88e33b62b0347da50128e642930d5"));
 
         vSeeds.emplace_back("seed00.cns.com", true);
         vSeeds.emplace_back("seed01.cns.com", true);
