@@ -465,16 +465,14 @@ public:
         pchMessageStart[3] = 0x2e;//.
         nDefaultPort = 10226;
         nPruneAfterHeight = 100000;
-        //FindMainNetGenesisBlock(1640529614, 0x20001fff, "main");
 
-        uint32_t nTime = 1640529614;
-        uint32_t nNonce = 0;
-        genesis = CreateGenesisBlock(nTime, nNonce, 0x1f00ffff, 1, 1 * COIN);
-        while (genesis.GetHash() > uint256S("0000ffff00000000000000000000000000000000000000000000000000000000")) {
-            genesis = CreateGenesisBlock(nTime, ++nNonce, 0x1f00ffff, 1, 1 * COIN);
-            printf("\r%08x", nNonce);
-        }
+        //FindMainNetGenesisBlock(1640529614, 0x20001fff, "main");
+        //genesis = CreateGenesisBlock(1390095618, 28917698, 0x1e0ffff0, 1, 50 * COIN);
+
+        FindMainNetGenesisBlock(1640529614, 0x20001fff, "main");
         consensus.hashGenesisBlock = genesis.GetHash();
+        assert(consensus.hashGenesisBlock == uint256S("0x001"));
+        assert(genesis.hashMerkleRoot == uint256S("0x001"));
 
         vSeeds.emplace_back("seed00.cns.com", true);
         vSeeds.emplace_back("seed01.cns.com", true);
