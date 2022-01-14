@@ -472,19 +472,23 @@ public:
         if (regenerateGenesisHash == true) {
             consensus.hashGenesisBlock = uint256S("0x");
             std::cout << std::string("Begin calculating Mainnet Genesis Block:\n");            
-            if (true && (genesis.GetHash(consensus) != consensus.hashGenesisBlock)) {
+            if (true && (genesis.GetHash() != consensus.hashGenesisBlock)) {
                 arith_uint256 hashTarget = arith_uint256().SetCompact(genesis.nBits);
                 uint256 hash;
                 genesis.nNonce = ArithToUint256(0);
-                while (UintToArith256(genesis.GetHash(consensus)) > hashTarget) {
+                while (UintToArith256(genesis.GetHash()) > hashTarget) {
                     genesis.nNonce = ArithToUint256(UintToArith256(genesis.nNonce) + 1);
                     if (genesis.nNonce == ArithToUint256(arith_uint256(0))) {
                         LogPrintf("NONCE WRAPPED, incrementing time");
                         std::cout << std::string("NONCE WRAPPED, incrementing time:\n");
                         ++genesis.nTime;
                     }
-                    if ((int)genesis.nNonce.GetUint64(0) % 10000 == 0) {
-                        std::cout << strNetworkID << " hashTarget: " << hashTarget.ToString() << " nonce: " << genesis.nNonce.ToString() << " time: " << genesis.nTime << " hash: " << genesis.GetHash(consensus).ToString().c_str() << "\r";
+                    if ((int)genesis.nNonce % 10000 == 0) {
+                        std::cout << strNetworkID 
+                            << " hashTarget: " << hashTarget.ToString() 
+                            << " nonce: " << genesis.nNonce 
+                            << " time: " << genesis.nTime 
+                            << " hash: " << genesis.GetHash().ToString().c_str() << "\r";
                     }
                 }
                 LogPrintf("Mainnet:\n");
