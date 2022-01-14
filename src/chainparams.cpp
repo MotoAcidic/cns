@@ -475,9 +475,9 @@ public:
             if (true && (genesis.GetHash() != consensus.hashGenesisBlock)) {
                 arith_uint256 hashTarget = arith_uint256().SetCompact(genesis.nBits);
                 uint256 hash;
-                genesis.nNonce = ArithToUint256(0);
+                genesis.nNonce = 0;
                 while (UintToArith256(genesis.GetHash()) > hashTarget) {
-                    genesis.nNonce = ArithToUint256(UintToArith256(genesis.nNonce) + 1);
+                    ++genesis.nNonce;
                     if (genesis.nNonce == 0) {
                         LogPrintf("NONCE WRAPPED, incrementing time");
                         std::cout << std::string("NONCE WRAPPED, incrementing time:\n");
@@ -499,6 +499,7 @@ public:
             }
             std::cout << std::string("Finished calculating Mainnet Genesis Block:\n");
         } else {
+            //These lines are not checked unless the regenerateGenesisHash above is set to false.
             genesis = CreateGenesisBlock(1640529614, 3905, 0x20001fff, 1, 50 * COIN);
             consensus.hashGenesisBlock = genesis.GetHash();
             assert(consensus.hashGenesisBlock == uint256S("0x00153528fa2c14fae39379d9d522726b29cb5c31608c170d13344a9986b9d51f"));
