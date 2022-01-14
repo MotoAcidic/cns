@@ -466,21 +466,26 @@ public:
         nDefaultPort = 10226;
         nPruneAfterHeight = 100000;
 
-        static bool regenerate = true;
-        if (regenerate == true) {
-            consensus.hashGenesisBlock = uint256S("");
-            genesis.nNonce = 0;
-            arith_uint256 hashTarget = arith_uint256().SetCompact(genesis.nBits);
-            if (true && (genesis.GetHash() != consensus.hashGenesisBlock)) {
-                while (UintToArith256(genesis.GetHash()) > hashTarget) {
-                    ++genesis.nNonce;
-                    if (genesis.nNonce == 0) {
+        // Turn to true when you want to generate a new genesis hash
+        // Other wise set to false and populate the information according below.
+        static bool regenerateGenesisHash = true;
+        if (regenerateGenesisHash == true) {
+            consensus.hashGenesisBlock = uint256S("0x");
+            std::cout << std::string("Begin calculating Mainnet Genesis Block:\n");            
+            if (true && (genesis.GetHash(consensus) != consensus.hashGenesisBlock)) {
+                arith_uint256 hashTarget = arith_uint256().SetCompact(genesis.nBits);
+                uint256 hash;
+                genesis.nNonce = ArithToUint256(0);
+                while (UintToArith256(genesis.GetHash(consensus)) > hashTarget) {
+                    genesis.nNonce = ArithToUint256(UintToArith256(genesis.nNonce) + 1);
+                    if (genesis.nNonce == ArithToUint256(arith_uint256(0))) {
+                        LogPrintf("NONCE WRAPPED, incrementing time");
+                        std::cout << std::string("NONCE WRAPPED, incrementing time:\n");
                         ++genesis.nTime;
                     }
-                    //printf("\rnonce %08x", genesis.nNonce);
-                    //printf("\rtime: %u", genesis.nTime);
-                    printf("\rhash: 0x%s", genesis.GetHash().ToString().c_str());
-                    //printf("\rmerklehash: 0x%s", genesis.hashMerkleRoot.ToString().c_str());
+                    if ((int)genesis.nNonce.GetUint64(0) % 10000 == 0) {
+                        std::cout << strNetworkID << " hashTarget: " << hashTarget.ToString() << " nonce: " << genesis.nNonce.ToString() << " time: " << genesis.nTime << " hash: " << genesis.GetHash(consensus).ToString().c_str() << "\r";
+                    }
                 }
                 LogPrintf("Mainnet:\n");
                 LogPrintf("-nonce: %u\n", genesis.nNonce);
@@ -488,21 +493,13 @@ public:
                 LogPrintf("-hash: 0x%s\n", genesis.GetHash().ToString().c_str());
                 LogPrintf("-merklehash: 0x%s\n", genesis.hashMerkleRoot.ToString().c_str());
             }
+            std::cout << std::string("Finished calculating Mainnet Genesis Block:\n");
         } else {
-            assert(consensus.hashGenesisBlock == uint256S("0x001"));
-            assert(genesis.hashMerkleRoot == uint256S("0x001"));
-            LogPrintf("Mainnet:\n");
-            LogPrintf("-nonce: %u\n", genesis.nNonce);
-            LogPrintf("-time: %u\n", genesis.nTime);
-            LogPrintf("-hash: 0x%s\n", genesis.GetHash().ToString().c_str());
-            LogPrintf("-merklehash: 0x%s\n", genesis.hashMerkleRoot.ToString().c_str());
+            genesis = CreateGenesisBlock(1640529614, 3905, 0x20001fff, 1, 50 * COIN);
+            consensus.hashGenesisBlock = genesis.GetHash();
+            assert(consensus.hashGenesisBlock == uint256S("0x00153528fa2c14fae39379d9d522726b29cb5c31608c170d13344a9986b9d51f"));
+            assert(genesis.hashMerkleRoot == uint256S("07887fde97c010c16ca9947d9d7c7cf291fc88e33b62b0347da50128e642930d5"));
         }
-
-        //FindMainNetGenesisBlock(1640529614, 0x20001fff, "main");
-        //genesis = CreateGenesisBlock(1640529614, 3905, 0x20001fff, 1, 50 * COIN);
-        //consensus.hashGenesisBlock = genesis.GetHash();
-        //assert(consensus.hashGenesisBlock == uint256S("0x00153528fa2c14fae39379d9d522726b29cb5c31608c170d13344a9986b9d51f"));
-        //assert(genesis.hashMerkleRoot == uint256S("07887fde97c010c16ca9947d9d7c7cf291fc88e33b62b0347da50128e642930d5"));
 
         vSeeds.emplace_back("seed00.cns.com", true);
         vSeeds.emplace_back("seed01.cns.com", true);
