@@ -467,9 +467,7 @@ public:
         nPruneAfterHeight = 100000;
 
         static bool regenerate = true;
-
-
-        if (regenerate) {
+        if (regenerate == true) {
             consensus.hashGenesisBlock = uint256S("");
             genesis.nNonce = 0;
             arith_uint256 hashTarget = arith_uint256().SetCompact(genesis.nBits);
@@ -479,6 +477,7 @@ public:
                     if (genesis.nNonce == 0) {
                         ++genesis.nTime;
                     }
+                    printf("\rnonce %08x", genesis.nNonce)
                 }
                 LogPrintf("Mainnet:\n");
                 LogPrintf("-nonce: %u\n", genesis.nNonce);
@@ -487,8 +486,13 @@ public:
                 LogPrintf("-merklehash: 0x%s\n", genesis.hashMerkleRoot.ToString().c_str());
             }
         } else {
-            assert(consensus.hashGenesisBlock == uint256S("0x00153528fa2c14fae39379d9d522726b29cb5c31608c170d13344a9986b9d51f"));
-            assert(genesis.hashMerkleRoot == uint256S("0x07887fde97c010c16ca9947d9d7c7cf291fc88e33b62b0347da50128e642930d5"));
+            assert(consensus.hashGenesisBlock == uint256S("0x001"));
+            assert(genesis.hashMerkleRoot == uint256S("0x001"));
+            LogPrintf("Mainnet:\n");
+            LogPrintf("-nonce: %u\n", genesis.nNonce);
+            LogPrintf("-time: %u\n", genesis.nTime);
+            LogPrintf("-hash: 0x%s\n", genesis.GetHash().ToString().c_str());
+            LogPrintf("-merklehash: 0x%s\n", genesis.hashMerkleRoot.ToString().c_str());
         }
 
         //FindMainNetGenesisBlock(1640529614, 0x20001fff, "main");
