@@ -477,7 +477,7 @@ public:
                     if (genesis.nNonce == 0) {
                         ++genesis.nTime;
                     }
-                    printf("\rnonce %08x", genesis.nNonce)
+                    printf("\rnonce %08x", genesis.nNonce);
                 }
                 LogPrintf("Mainnet:\n");
                 LogPrintf("-nonce: %u\n", genesis.nNonce);
