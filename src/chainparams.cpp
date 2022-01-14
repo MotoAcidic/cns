@@ -478,7 +478,7 @@ public:
                 genesis.nNonce = ArithToUint256(0);
                 while (UintToArith256(genesis.GetHash()) > hashTarget) {
                     genesis.nNonce = ArithToUint256(UintToArith256(genesis.nNonce) + 1);
-                    if (genesis.nNonce == ArithToUint256(arith_uint256(0))) {
+                    if (genesis.nNonce == 0) {
                         LogPrintf("NONCE WRAPPED, incrementing time");
                         std::cout << std::string("NONCE WRAPPED, incrementing time:\n");
                         ++genesis.nTime;
