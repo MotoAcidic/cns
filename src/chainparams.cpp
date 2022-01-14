@@ -477,7 +477,11 @@ public:
                     if (genesis.nNonce == 0) {
                         ++genesis.nTime;
                     }
-                    printf("\rnonce %08x", genesis.nNonce);
+                    printf("Mainnet:\n");
+                    printf("\rnonce %08x\n", genesis.nNonce);
+                    printf("\rtime: %u\n", genesis.nTime);
+                    printf("\rhash: 0x%s\n", genesis.GetHash().ToString().c_str());
+                    printf("\rmerklehash: 0x%s\n", genesis.hashMerkleRoot.ToString().c_str());
                 }
                 LogPrintf("Mainnet:\n");
                 LogPrintf("-nonce: %u\n", genesis.nNonce);
