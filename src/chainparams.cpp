@@ -466,10 +466,6 @@ public:
         nDefaultPort = 10226;
         nPruneAfterHeight = 100000;
 
-        // Turn to true when you want to generate a new genesis hash
-        // Other wise set to false and populate the information according below.
-        static bool regenerateGenesisHash = true;
-        if (regenerateGenesisHash == true) {
             consensus.hashGenesisBlock = uint256S("0x");
             std::cout << std::string("Begin calculating Mainnet Genesis Block:\n");            
             if (true && (genesis.GetHash() != consensus.hashGenesisBlock)) {
@@ -480,14 +476,16 @@ public:
                     ++genesis.nNonce;
                     if (genesis.nNonce == 0) {
                         LogPrintf("NONCE WRAPPED, incrementing time");
-                        std::cout << std::string("NONCE WRAPPED, incrementing time:\n");
+                        std::cout << std::string("NONCE WRAPPED, incrementing time: disregard this for now.\n");
                         ++genesis.nTime;
                     }
                     if ((int)genesis.nNonce % 10000 == 0) {
                         std::cout << strNetworkID 
                             << " hashTarget: " << hashTarget.ToString() 
                             << " nonce: " << genesis.nNonce 
+                            << " nbits: " << genesis.nBits
                             << " time: " << genesis.nTime 
+                            << " merkle: " << genesis.hashMerkleRoot.ToString().c_str()
                             << " hash: " << genesis.GetHash().ToString().c_str() << "\r";
                     }
                 }
@@ -498,13 +496,12 @@ public:
                 LogPrintf("-merklehash: 0x%s\n", genesis.hashMerkleRoot.ToString().c_str());
             }
             std::cout << std::string("Finished calculating Mainnet Genesis Block:\n");
-        } else {
-            //These lines are not checked unless the regenerateGenesisHash above is set to false.
-            genesis = CreateGenesisBlock(1640529614, 3905, 0x20001fff, 1, 50 * COIN);
-            consensus.hashGenesisBlock = genesis.GetHash();
-            assert(consensus.hashGenesisBlock == uint256S("0x00153528fa2c14fae39379d9d522726b29cb5c31608c170d13344a9986b9d51f"));
-            assert(genesis.hashMerkleRoot == uint256S("07887fde97c010c16ca9947d9d7c7cf291fc88e33b62b0347da50128e642930d5"));
-        }
+
+            //genesis = CreateGenesisBlock(1640529614, 3905, 0x20001fff, 1, 50 * COIN);
+            //consensus.hashGenesisBlock = genesis.GetHash();
+            //assert(consensus.hashGenesisBlock == uint256S("0x00153528fa2c14fae39379d9d522726b29cb5c31608c170d13344a9986b9d51f"));
+            //assert(genesis.hashMerkleRoot == uint256S("07887fde97c010c16ca9947d9d7c7cf291fc88e33b62b0347da50128e642930d5"));
+
 
         vSeeds.emplace_back("seed00.cns.com", true);
         vSeeds.emplace_back("seed01.cns.com", true);
