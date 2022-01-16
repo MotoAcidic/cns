@@ -148,7 +148,7 @@ static CBlock FindDevNetGenesisBlock(const Consensus::Params& params, const CBlo
 static void FindMainNetGenesisBlock(uint32_t nTime, uint32_t nBits, const char* network)
 {
 
-    CBlock block = CreateGenesisBlock(nTime, 0, nBits, 4, 5000 * COIN);
+    CBlock block = CreateGenesisBlock(nTime, 0, nBits, 4, 50 * COIN);
 
     arith_uint256 bnTarget;
     bnTarget.SetCompact(block.nBits);
@@ -466,6 +466,7 @@ public:
         nDefaultPort = 10226;
         nPruneAfterHeight = 100000;
 
+        /*
             consensus.hashGenesisBlock = uint256S("0x");
             std::cout << std::string("Begin calculating Mainnet Genesis Block:\n");            
             if (true && (genesis.GetHash() != consensus.hashGenesisBlock)) {
@@ -496,8 +497,9 @@ public:
                 LogPrintf("-merklehash: 0x%s\n", genesis.hashMerkleRoot.ToString().c_str());
             }
             std::cout << std::string("Finished calculating Mainnet Genesis Block:\n");
-
-            //genesis = CreateGenesisBlock(1640529614, 3905, 0x20001fff, 1, 50 * COIN);
+        */
+            FindMainNetGenesisBlock(1642292731, 0x1f0fffff, "main");   
+            //genesis = CreateGenesisBlock(1642292731, 3905, 0x20001fff, 4, 50 * COIN);
             //consensus.hashGenesisBlock = genesis.GetHash();
             //assert(consensus.hashGenesisBlock == uint256S("0x00153528fa2c14fae39379d9d522726b29cb5c31608c170d13344a9986b9d51f"));
             //assert(genesis.hashMerkleRoot == uint256S("07887fde97c010c16ca9947d9d7c7cf291fc88e33b62b0347da50128e642930d5"));
