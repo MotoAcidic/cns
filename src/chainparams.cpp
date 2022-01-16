@@ -498,11 +498,11 @@ public:
             }
             std::cout << std::string("Finished calculating Mainnet Genesis Block:\n");
         */
-            FindMainNetGenesisBlock(1642292731, 0x1f0fffff, "main");   
-            //genesis = CreateGenesisBlock(1642292731, 1209, 0x20001fff, 4, 50 * COIN);
+            //FindMainNetGenesisBlock(1642292731, 0x1f0fffff, "main");   
+            genesis = CreateGenesisBlock(1642292731, 1209, 0x20001fff, 4, 50 * COIN);
             consensus.hashGenesisBlock = genesis.GetHash();
-            //assert(consensus.hashGenesisBlock == uint256S("0x000691f7f87416447aaedaa99c4ad2372dce6ab41949172e1e96fdf689e6d9d9"));
-            //assert(genesis.hashMerkleRoot == uint256S("0x2a4a94c2681fc48ae1f7a3a073cbbcbdf794887c7a40ed9c2edb6793dd9106ac"));
+            assert(consensus.hashGenesisBlock == uint256S("0xcb2c47ec272c64a6515bc580798107268e6befb9555ee8625b62c433c835c19e"));
+            assert(genesis.hashMerkleRoot == uint256S("0x2a4a94c2681fc48ae1f7a3a073cbbcbdf794887c7a40ed9c2edb6793dd9106ac"));
 
 
         vSeeds.emplace_back("seed00.cns.com", true);
