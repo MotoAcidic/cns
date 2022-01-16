@@ -157,7 +157,7 @@ static void FindMainNetGenesisBlock(uint32_t nTime, uint32_t nBits, const char* 
         block.nNonce = nNonce;
 
         uint256 hash = block.GetPOWHash();
-        if (nNonce % 48 == 0) {
+        if (nNonce % 10000 == 0) {
         	printf("\nrnonce=%d, pow is %s\n", nNonce, hash.GetHex().c_str());
         }
         if (UintToArith256(hash) <= bnTarget) {
@@ -498,11 +498,11 @@ public:
             }
             std::cout << std::string("Finished calculating Mainnet Genesis Block:\n");
         */
-            //FindMainNetGenesisBlock(1642292731, 0x1f0fffff, "main");   
-            genesis = CreateGenesisBlock(1642292731, 1209, 0x20001fff, 4, 50 * COIN);
+            FindMainNetGenesisBlock(1642292731, 0x1f0fffff, "main");   
+            //genesis = CreateGenesisBlock(1642292731, 1209, 0x20001fff, 4, 50 * COIN);
             consensus.hashGenesisBlock = genesis.GetHash();
-            assert(consensus.hashGenesisBlock == uint256S("0x000691f7f87416447aaedaa99c4ad2372dce6ab41949172e1e96fdf689e6d9d9"));
-            assert(genesis.hashMerkleRoot == uint256S("0x2a4a94c2681fc48ae1f7a3a073cbbcbdf794887c7a40ed9c2edb6793dd9106ac"));
+            //assert(consensus.hashGenesisBlock == uint256S("0x000691f7f87416447aaedaa99c4ad2372dce6ab41949172e1e96fdf689e6d9d9"));
+            //assert(genesis.hashMerkleRoot == uint256S("0x2a4a94c2681fc48ae1f7a3a073cbbcbdf794887c7a40ed9c2edb6793dd9106ac"));
 
 
         vSeeds.emplace_back("seed00.cns.com", true);
