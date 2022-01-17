@@ -79,11 +79,10 @@ static CBlock CreateDevNetGenesisBlock(const uint256 &prevBlockHash, const std::
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "Crypto Never Sleeps";
+    const char* pszTimestamp = "Why do i spend so much time doing this.";
     const CScript genesisOutputScript = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
-
 
 void CChainParams::UpdateVersionBitsParameters(Consensus::DeploymentPos d, int64_t nStartTime, int64_t nTimeout, int64_t nWindowSize, int64_t nThreshold)
 {
@@ -148,7 +147,7 @@ static CBlock FindDevNetGenesisBlock(const Consensus::Params& params, const CBlo
 static void FindMainNetGenesisBlock(uint32_t nTime, uint32_t nBits, const char* network)
 {
 
-    CBlock block = CreateGenesisBlock(nTime, 0, nBits, 4, 50 * COIN);
+    CBlock block = CreateGenesisBlock(nTime, 0, nBits, 1, 50 * COIN);
 
     arith_uint256 bnTarget;
     bnTarget.SetCompact(block.nBits);
@@ -405,7 +404,6 @@ static Consensus::LLMQParams llmq400_85 = {
  * + Contains no strange transactions
  */
 
-
 class CMainParams : public CChainParams {
 public:
     CMainParams() {
@@ -433,8 +431,8 @@ public:
         consensus.DIP0001Enabled = true;
         consensus.DIP0003Enabled = true;
         consensus.DIP0008Enabled = true;
-       // consensus.DIP0003EnforcementHeight = 1047200;
-        consensus.powLimit = uint256S("00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 20
+        //consensus.DIP0003EnforcementHeight = 1047200;
+        consensus.powLimit = uint256S("0000ffff00000000000000000000000000000000000000000000000000000000");
         consensus.nPowTargetTimespan = 24 * 60 * 60; // CNS: 1 day
         consensus.nPowTargetSpacing = 2 * 60; // CNS: 2 minutes
         consensus.fPowAllowMinDifficultyBlocks = false;
@@ -466,44 +464,14 @@ public:
         nDefaultPort = 10226;
         nPruneAfterHeight = 100000;
 
-        
-            consensus.hashGenesisBlock = uint256S("0x");
-            std::cout << std::string("Begin calculating Mainnet Genesis Block:\n");            
-            if (true && (genesis.GetHash() != consensus.hashGenesisBlock)) {
-                arith_uint256 hashTarget = arith_uint256().SetCompact(genesis.nBits);
-                uint256 hash;
-                genesis.nNonce = 0;
-                while (UintToArith256(genesis.GetHash()) > hashTarget) {
-                    ++genesis.nNonce;
-                    if (genesis.nNonce == 0) {
-                        LogPrintf("NONCE WRAPPED, incrementing time");
-                        std::cout << std::string("NONCE WRAPPED, incrementing time: disregard this for now.\n");
-                        ++genesis.nTime;
-                    }
-                    if ((int)genesis.nNonce % 10000 == 0) {
-                        std::cout << strNetworkID 
-                            << " hashTarget: " << hashTarget.ToString() 
-                            << " nonce: " << genesis.nNonce 
-                            << " nbits: " << genesis.nBits
-                            << " time: " << genesis.nTime 
-                            << " merkle: " << genesis.hashMerkleRoot.ToString().c_str()
-                            << " hash: " << genesis.GetHash().ToString().c_str() << "\r";
-                    }
-                }
-                LogPrintf("Mainnet:\n");
-                LogPrintf("-nonce: %u\n", genesis.nNonce);
-                LogPrintf("-time: %u\n", genesis.nTime);
-                LogPrintf("-hash: 0x%s\n", genesis.GetHash().ToString().c_str());
-                LogPrintf("-merklehash: 0x%s\n", genesis.hashMerkleRoot.ToString().c_str());
-            }
-            std::cout << std::string("Finished calculating Mainnet Genesis Block:\n");
-        
-            //FindMainNetGenesisBlock(1642292731, 0x1f0fffff, "main");   
-            //genesis = CreateGenesisBlock(1642292731, 1209, 0x20001fff, 4, 50 * COIN);
-            //consensus.hashGenesisBlock = genesis.GetHash();
-            //assert(consensus.hashGenesisBlock == uint256S("0xcb2c47ec272c64a6515bc580798107268e6befb9555ee8625b62c433c835c19e"));
-            //assert(genesis.hashMerkleRoot == uint256S("0x2a4a94c2681fc48ae1f7a3a073cbbcbdf794887c7a40ed9c2edb6793dd9106ac"));
-
+        uint32_t nTime = 1642439702;
+        uint32_t nNonce = 0;
+        genesis = CreateGenesisBlock(nTime, nNonce, 0x1f00ffff, 1, 50 * COIN);
+        while (genesis.GetHash() > uint256S("0000ffff00000000000000000000000000000000000000000000000000000000")) {
+            genesis = CreateGenesisBlock(nTime, ++nNonce, 0x1f00ffff, 1, 50 * COIN);
+            printf("\r%08x", nNonce);
+        }
+        consensus.hashGenesisBlock = genesis.GetHash();
 
         vSeeds.emplace_back("seed00.cns.com", true);
         vSeeds.emplace_back("seed01.cns.com", true);
