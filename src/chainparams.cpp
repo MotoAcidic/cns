@@ -464,14 +464,11 @@ public:
         nDefaultPort = 10226;
         nPruneAfterHeight = 100000;
 
-        uint32_t nTime = 1642439702;
-        uint32_t nNonce = 0;
-        genesis = CreateGenesisBlock(nTime, nNonce, 0x1f00ffff, 1, 50 * COIN);
-        while (genesis.GetHash() > uint256("0000ffff00000000000000000000000000000000000000000000000000000000")) {
-            genesis = CreateGenesisBlock(nTime, ++nNonce, 0x1f00ffff, 1, 50 * COIN);
-            printf("\r%08x", nNonce);
-        }
+        FindMainNetGenesisBlock(1642444257, 0x1f00ffff, "main");
+        genesis = CreateGenesisBlock(1642444257, 1130, 0x1f00ffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
+        assert(consensus.hashGenesisBlock == uint256S("0x001"));
+        assert(genesis.hashMerkleRoot == uint256S("0x001"));
 
         vSeeds.emplace_back("seed00.cns.com", true);
         vSeeds.emplace_back("seed01.cns.com", true);
