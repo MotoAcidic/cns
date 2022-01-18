@@ -465,10 +465,10 @@ public:
         nPruneAfterHeight = 100000;
 
         FindMainNetGenesisBlock(1642444257, 0x1f00ffff, "main");
-        genesis = CreateGenesisBlock(1642444257, 1130, 0x1f00ffff, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1642444257, 69883, 0x1f00ffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x001"));
-        assert(genesis.hashMerkleRoot == uint256S("0x001"));
+        assert(consensus.hashGenesisBlock == uint256S("00004637497ca945ca9cc6895ec779e38c3524a1ff34cda8e9778dc72ea1368b"));
+        assert(genesis.hashMerkleRoot == uint256S("0db58fa17437ad65b7db4852da66fed13bd7d6daf40bf146be0703eceb7db957"));
 
         vSeeds.emplace_back("seed00.cns.com", true);
         vSeeds.emplace_back("seed01.cns.com", true);
