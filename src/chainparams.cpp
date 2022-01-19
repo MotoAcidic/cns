@@ -467,19 +467,11 @@ public:
         FindMainNetGenesisBlock(1642444257, 0x1f00ffff, "main");
         genesis = CreateGenesisBlock(1642444257, 69883, 0x1f00ffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("00004637497ca945ca9cc6895ec779e38c3524a1ff34cda8e9778dc72ea1368b"));
-        assert(genesis.hashMerkleRoot == uint256S("0db58fa17437ad65b7db4852da66fed13bd7d6daf40bf146be0703eceb7db957"));
+        assert(consensus.hashGenesisBlock == uint256S("0x904bdec5410606fbebe04c38acbf50b4fc8bd83b7fc96ec42971f58d62c080a9"));
+        assert(genesis.hashMerkleRoot == uint256S("0x0db58fa17437ad65b7db4852da66fed13bd7d6daf40bf146be0703eceb7db957"));
 
         vSeeds.emplace_back("seed00.cns.com", true);
         vSeeds.emplace_back("seed01.cns.com", true);
-        vSeeds.emplace_back("seed02.cns.com", true);
-        vSeeds.emplace_back("seed03.cns.com", true);
-        vSeeds.emplace_back("seed04.cns.com", true);
-        vSeeds.emplace_back("seed05.cns.com", true);
-        vSeeds.emplace_back("seed06.cns.com", true);
-        vSeeds.emplace_back("ger1.cns.com", true);
-        vSeeds.emplace_back("ny1.cns.com", true);
-
 
         // CNS addresses start with 'r'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,60);
